@@ -1,0 +1,69 @@
+//USER
+POST http://localhost:4000/user
+Content-Type: application/json
+
+{
+    "login": "1",
+    "password": "123"
+}
+###
+GET http://localhost:4000/user
+###
+GET http://localhost:4000/user/b0580351-2885-4d9a-bb82-ba5291bb9ad8
+
+### 
+PUT http://localhost:4000/user/b0580351-2885-4d9a-bb82-ba5291bb9ad8
+Content-Type: application/json
+
+{
+    "oldPassword": "123",
+    "newPassword": "236"
+}
+###
+DELETE http://localhost:4000/user/b0580351-2885-4d9a-bb82-ba5291bb9ad8
+
+//TRACK
+###
+POST http://localhost:4000/tracks
+Content-Type: application/json
+
+{
+    "name": "2",
+    "artistId": "1",
+    "albumId": "",
+    "duration": 1
+}
+###
+GET http://localhost:4000/tracks
+###
+GET http://localhost:4000/tracks/ffabf372-5b65-439e-bbdb-c3d2ad78e354
+###
+DELETE http://localhost:4000/tracks/ffabf372-5b65-439e-bbdb-c3d2ad78e354
+
+//ALBUM
+POST http://localhost:4000/album
+Content-Type: application/json
+
+{
+    "name": "A",
+    "year": 16,
+    "artistId": "linck"
+}
+###
+GET http://localhost:4000/album
+###
+GET http://localhost:4000/album/b0580351-2885-4d9a-bb82-ba5291bb9ad8
+
+### 
+PUT http://localhost:4000/album/b0580351-2885-4d9a-bb82-ba5291bb9ad8
+Content-Type: application/json
+
+{
+    "name": "A",
+    "year": 16,
+    "artistId": "linck"
+}
+###
+DELETE http://localhost:4000/album/b0580351-2885-4d9a-bb82-ba5291bb9ad8
+
+
