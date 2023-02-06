@@ -1,6 +1,17 @@
+import { IsInt, IsOptional, IsString } from 'class-validator';
 export class CreateTrackDto {
-    public name?: string;
-    public duration?: number;
-    public albumId?: string;
-    public artistId?: string | null;
+
+    @IsString()
+    name: string;
+    
+    @IsInt()
+    duration: number;
+
+    @IsString()
+    @IsOptional()
+    albumId: string | null;
+
+    @IsString()
+    @IsOptional()
+    artistId: string | null;
 }

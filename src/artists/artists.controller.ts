@@ -14,7 +14,7 @@ export class ArtistsController {
   @HttpCode(201)
   create(@Body() createArtistDto: CreateArtistDto, @Res() res: Response) {
     const artist = this.artistsService.create(createArtistDto);
-    if (artist === null) {
+    if (!artist) {
       throw new HttpException(`Body does not contain required fields`, StatusCodes.BAD_REQUEST);
     }  
     res.send(artist);
@@ -65,17 +65,18 @@ export class ArtistsController {
 
   @Delete(':id')
   @HttpCode(204)
-  remove(@Param('id') id: string) {
+  remove(@Param('id') id: string, @Res() res: Response) {
     if (typeof id !== 'string') {
       throw new HttpException(`id ${id} not validate`, StatusCodes.BAD_REQUEST);
     }
     if (!validate(id)) {
       throw new HttpException(`id ${id} not validate`, 400);
     }
-    const artist = this.artistsService.remove(id);
+    let artist = this.artistsService.remove(id);
     if (!artist) {
       throw new HttpException(`User not found`, StatusCodes.NOT_FOUND);
     }
+    res.send(StatusCodes.NO_CONTENT);
     return;
   }
 }

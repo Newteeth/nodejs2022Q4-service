@@ -3,13 +3,13 @@ POST http://localhost:4000/user
 Content-Type: application/json
 
 {
-    "login": "1",
-    "password": "123"
+    "login": "5",
+    "password": "123rty"
 }
 ###
 GET http://localhost:4000/user
 ###
-GET http://localhost:4000/user/b0580351-2885-4d9a-bb82-ba5291bb9ad8
+GET http://localhost:4000/user/3503ec7b-1dd4-4ef1-be8d-a251f3ace454
 
 ### 
 PUT http://localhost:4000/user/b0580351-2885-4d9a-bb82-ba5291bb9ad8
@@ -24,46 +24,82 @@ DELETE http://localhost:4000/user/b0580351-2885-4d9a-bb82-ba5291bb9ad8
 
 //TRACK
 ###
-POST http://localhost:4000/tracks
+POST http://localhost:4000/track
 Content-Type: application/json
 
 {
-    "name": "2",
-    "artistId": "1",
-    "albumId": "",
+    "name": "123",
+    "artistId": null,
+    "albumId": null,
+    "duration": 120
+}
+###
+GET http://localhost:4000/track
+###
+GET http://localhost:4000/track/204b99c4-034c-48f8-9910-0d76bf9e9204
+
+### 
+PUT http://localhost:4000/track/204b99c4-034c-48f8-9910-0d76bf9e9205
+Content-Type: application/json
+
+{
+    "name": "222",
+    "artistId": null,
+    "albumId": "vzick",
     "duration": 1
 }
 ###
-GET http://localhost:4000/tracks
-###
-GET http://localhost:4000/tracks/ffabf372-5b65-439e-bbdb-c3d2ad78e354
-###
-DELETE http://localhost:4000/tracks/ffabf372-5b65-439e-bbdb-c3d2ad78e354
+DELETE http://localhost:4000/track/6ad0dc9e-301e-4964-814c-6984eec39953
 
 //ALBUM
+###
 POST http://localhost:4000/album
 Content-Type: application/json
 
 {
-    "name": "A",
+    "name": "testAlbum",
     "year": 16,
     "artistId": "linck"
 }
 ###
 GET http://localhost:4000/album
 ###
-GET http://localhost:4000/album/b0580351-2885-4d9a-bb82-ba5291bb9ad8
+GET http://localhost:4000/album/b6080137-ba87-496d-9abe-6d79538ab2a8
 
 ### 
-PUT http://localhost:4000/album/b0580351-2885-4d9a-bb82-ba5291bb9ad8
+PUT http://localhost:4000/album/b6080137-ba87-496d-9abe-6d79538ab2a8
 Content-Type: application/json
 
 {
     "name": "A",
-    "year": 16,
+    "year": 2016,
     "artistId": "linck"
 }
 ###
-DELETE http://localhost:4000/album/b0580351-2885-4d9a-bb82-ba5291bb9ad8
+DELETE http://localhost:4000/album/762786df-3f17-46b7-972e-6614ec86a88e
 
 
+//ARTIST
+###
+POST http://localhost:4000/artist
+Content-Type: application/json
+
+{
+    "name": "1",
+    "grammy": false
+}
+###
+GET http://localhost:4000/artist
+###
+GET http://localhost:4000/artist/b0580351-2885-4d9a-bb82-ba5291bb9ad8
+
+### 
+PUT http://localhost:4000/artist/b0580351-2885-4d9a-bb82-ba5291bb9ad8
+Content-Type: application/json
+
+{
+    "oldPassword": "123",
+    "newPassword": "236"
+}
+###
+DELETE http://localhost:4000/artist/65028ba0-7f61-4d67-b56d-8b06d9f4ba2d

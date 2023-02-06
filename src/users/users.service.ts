@@ -9,6 +9,9 @@ import { User } from './entities/user.entity';
 export class UsersService {
   create(createUserDto: CreateUserDto) {
     try {
+      if (createUserDto.password === 'password'){
+        return null;
+      }
       const user: User = {
         login: createUserDto.login,
         password: createUserDto.password,

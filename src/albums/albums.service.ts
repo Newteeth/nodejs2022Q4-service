@@ -1,18 +1,29 @@
-import { Injectable } from '@nestjs/common';
+import { forwardRef, Injectable, Inject } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
 import { DBalbums } from 'src/DBalbum';
 import { CreateAlbumDto } from './dto/create-album.dto';
 import { UpdateAlbumDto } from './dto/update-album.dto';
 import { Album } from './entities/album.entity';
+import { TracksService } from 'src/tracks/tracks.service';
 
 @Injectable()
 export class AlbumsService {
+  constructor(
+    @Inject(forwardRef(() => TracksService))
+    private tracksService: TracksService) {}
+
   create(createAlbumDto: CreateAlbumDto) {
+    
     try{
-      let album: Album;
-      album.id = uuidv4();
+      const album: Album = {
+        id: uuidv4(),
+        name: createAlbumDto.name,
+        year: createAlbumDto.year,
+        artistId: createAlbumDto.artistId
+      };
+      
       const objLengthAlbum = Object.keys(album).length;
-      if (objLengthAlbum === 4) {
+      if (objLengthAlbum <= 4) {
         DBalbums.push(album);
         return album;
       } else {
@@ -51,7 +62,15 @@ export class AlbumsService {
 
   remove(id: string) {
     const album: Album = this.findOne(id);
-    DBalbums.splice(DBalbums.indexOf(album), 1)
-    return album;
+    const trackById = this.tracksService.findAll()
+    const albumIdFoundTrack = trackById.find(elem => elem.albumId === id);
+    if (albumIdFoundTrack) {      
+      albumIdFoundTrack.albumId = null;
+      DBalbums.splice(DBalbums.indexOf(album), 1);
+      return album;
+    } else {
+      DBalbums.splice(DBalbums.indexOf(album), 1);
+      return album;
+    }    
   }
 }

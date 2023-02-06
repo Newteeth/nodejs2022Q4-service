@@ -4,29 +4,25 @@ import { DBtracks } from 'src/DBtracks';
 import { CreateTrackDto } from './dto/create-track.dto';
 import { UpdateTrackDto } from './dto/update-track.dto';
 import { Track } from './entities/track.entity';
-import { ArtistsService } from 'src/artists/artists.service';
 
 @Injectable()
 export class TracksService {
   create(createTrackDto: CreateTrackDto): CreateTrackDto | null {
     try {
-
-      const artistByID = new ArtistsService;
-      const artist = artistByID;
       const track: Track = {
         artistId: createTrackDto.artistId,
         name: createTrackDto.name,
         albumId: createTrackDto.albumId,
         duration: createTrackDto.duration,
         id: uuidv4()
-      };      
+      };
       const objLength = Object.keys(track).length;
-      if (objLength === 5) {
+      console.log(objLength);
+      if (objLength <= 5) {
         DBtracks.push(track);
+        console.log(track);
         return track;
-      } else {
-        return null;
-      }       
+      }    
     } catch {
       throw new Error;
     }
@@ -46,7 +42,6 @@ export class TracksService {
   }
 
   update(id: string, updateTrackDto: UpdateTrackDto) {
-    const trackUpdate = updateTrackDto;
     let track: Track = this.findOne(id);
     if (!track) {
       return null;
