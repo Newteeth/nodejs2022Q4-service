@@ -14,7 +14,6 @@ export class TracksController {
   @Post()
   @HttpCode(201)
   create(@Body() createTrackDto: CreateTrackDto, @Res() res: Response) {
-    console.log(createTrackDto);
     if (createTrackDto.albumId !== null) {
       if (!validate(createTrackDto.albumId)) {
         throw new HttpException(`albumId: ${createTrackDto.albumId} not validate`, StatusCodes.BAD_REQUEST);
@@ -26,7 +25,6 @@ export class TracksController {
       }
     }
     const track = this.tracksService.create(createTrackDto);
-    console.log(track);
     if (track === null) {
       throw new HttpException(`Body does not contain required fields`, StatusCodes.BAD_REQUEST);
     }

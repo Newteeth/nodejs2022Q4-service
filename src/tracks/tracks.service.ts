@@ -17,10 +17,8 @@ export class TracksService {
         id: uuidv4()
       };
       const objLength = Object.keys(track).length;
-      console.log(objLength);
       if (objLength <= 5) {
         DBtracks.push(track);
-        console.log(track);
         return track;
       }    
     } catch {
