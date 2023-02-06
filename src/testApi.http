@@ -103,3 +103,12 @@ Content-Type: application/json
 }
 ###
 DELETE http://localhost:4000/artist/65028ba0-7f61-4d67-b56d-8b06d9f4ba2d
+
+//FAVORITES
+###
+POST http://localhost:4000/favs/track/a0d39357-1bd0-4a51-8f06-1c44c4e49801
+
+###
+GET http://localhost:4000/artist
+###
+DELETE http://localhost:4000/artist/65028ba0-7f61-4d67-b56d-8b06d9f4ba2d

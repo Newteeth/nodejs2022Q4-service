@@ -11,39 +11,39 @@ import { UpdateFavoriteDto } from './dto/update-favorite.dto';
 
 @Injectable()
 export class FavoritesService {
-  create(createFavoriteDto: CreateFavoriteDto, id: string) {
+  create(createFavoriteDto: CreateFavoriteDto, id: string, url: string) {
     const reqectId = id;
-    const track: Track = DBtracks.find(({ id }) => id === reqectId);
-    const album: Album = DBalbums.find(({ id }) => id === reqectId);
-    const artist: Artist = DBartists.find(({ id }) => id === reqectId);
-    
-    if (track) {
-      const trackId = track.id;
-      return DBfavorites.tracks.push(trackId);
+    if (url === 'track') {
+      const track: Track = DBtracks.find(({ id }) => id === reqectId);
+      if (!track) {
+        return null;
+      } else {
+        const trackId = track.id;
+        return DBfavorites.tracks.push(trackId);
+      }
     }
-    if (album) {
-      const albumId = track.id;
-      return DBfavorites.tracks.push(albumId);
+    if(url === 'album') {
+      const album: Album = DBalbums.find(({ id }) => id === reqectId);
+      if (!album) {
+        return null;
+      } else {
+        const albumId = album.id;
+        return DBfavorites.tracks.push(albumId);
+      }
     }
-    if (artist) {
-      const artistId = track.id;
-      return DBfavorites.tracks.push(artistId);
-    }
-    if (!track || !album ||artist) {
-      return null;
-    }
+    if(url === 'artist') {
+      const artist: Artist = DBartists.find(({ id }) => id === reqectId);
+      if (!artist) {
+        return null;
+      } else {
+        const artistId = artist.id;
+        return DBfavorites.tracks.push(artistId);
+      }
+    }    
   }
 
   findAll() {
-    return `This action returns all favorites`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} favorite`;
-  }
-
-  update(id: number, updateFavoriteDto: UpdateFavoriteDto) {
-    return `This action updates a #${id} favorite`;
+    return DBfavorites;
   }
 
   remove(id: number) {
